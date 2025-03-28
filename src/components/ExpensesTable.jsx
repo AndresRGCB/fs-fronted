@@ -3,7 +3,8 @@ import "./ExpensesTable.css";
 import { FaChevronDown, FaChevronUp, FaTrash } from "react-icons/fa";
 import Modal from "./Modal";
 
-const API_URL = "http://localhost:8000/api/expenses"; // Change this if needed
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 const StatusIndicator = ({ isActive }) => (
   <span className={`status-indicator ${isActive ? 'active' : 'inactive'}`}>
@@ -60,7 +61,7 @@ const ExpensesTable = ({
     try {
 
       const response = await fetch(
-        `${API_URL}?page=${page}&items_per_page=${items}&date_filter=${filter}&timestamp=${Date.now()}`
+        `${API_BASE_URL}?page=${page}&items_per_page=${items}&date_filter=${filter}&timestamp=${Date.now()}`
       );
 
       if (!response.ok) {
@@ -81,7 +82,7 @@ const ExpensesTable = ({
     try {
       const token = localStorage.getItem("token"); // or however you store it
   
-      const response = await fetch(`${API_URL}/delete/${expenseId}`, {
+      const response = await fetch(`${API_BASE_URL}/delete/${expenseId}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,
