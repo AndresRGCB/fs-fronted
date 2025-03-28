@@ -6,6 +6,8 @@ import SignUpForm from "../components/SignUpForm";
 import "../styles/login.css";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+console.log("🔗 API Base URL:", process.env.REACT_APP_API_BASE_URL);
+
 
 const Login = () => {
   const navigate = useNavigate(); // Initialize navigation
